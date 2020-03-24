@@ -11,19 +11,19 @@
         <li class="breadcrumb-item active">Boards</li>
       </ol>
       <table class="table">
-        <thead class="thead-inverse">
+        <thead class="thead-dark">
           <tr>
-            <th>Board</th>
-            <th>Posts</th>
-            <th>Topics</th>
-            <th>Last Post</th>
+            <th scope="col">Board</th>
+            <th scope="col">Posts</th>
+            <th scope="col">Topics</th>
+            <th scope="col">Last Post</th>
           </tr>
         </thead>
         <tbody>
           {% for board in boards %}
             <tr>
               <td>
-                {{ board.name }}
+                <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
                 <small class="text-muted d-block">{{ board.description }}</small>
               </td>
               <td class="align-middle">0</td>
