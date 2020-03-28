@@ -30,3 +30,6 @@ def home(request):
 def board_topics(request, pk):
     board = get_object_or_404(Board, pk=pk)
     return render(request, 'topics.html', {'board': board})
+def topic_posts(request, pk, topic_pk):
+    topic = get_object_or_404(Topic, board__pk=pk, pk=topic_pk)
+    return render(request, 'topic_posts.html', {'topic': topic})
