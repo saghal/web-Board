@@ -7,6 +7,8 @@ from django.db.models import Count
 from django.views.generic import UpdateView, ListView
 from django.utils import timezone
 from django.utils.decorators import method_decorator
+from django.urls import reverse_lazy
+
 
 @login_required
 def new_topic(request, pk):
@@ -47,7 +49,7 @@ class TopicListView(ListView):
         self.board = get_object_or_404(Board, pk=self.kwargs.get('pk'))
         queryset = self.board.topics.order_by('-last_updated').annotate(replies=Count('posts') - 1)
         return queryset
-        
+
 def topic_posts(request, pk, topic_pk):
     topic = get_object_or_404(Topic, board__pk=pk, pk=topic_pk)
     topic.views += 1
