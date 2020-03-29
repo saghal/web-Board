@@ -37,7 +37,7 @@ urlpatterns = [
     path('reset/done/',
         auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'),
         name='password_reset_done'),
-    path('reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
+    path('reset/<uidb64>[0-9A-Za-z_\-]/<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20}/',
         auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html'),
         name='password_reset_confirm'),
     path('reset/complete/',
@@ -49,5 +49,6 @@ urlpatterns = [
         name='password_change_done'),
     path('boards/<int:pk>/topics/<int:topic_pk>/', views.topic_posts, name='topic_posts'),
     path('boards/<int:pk>/topics/<int:topic_pk>/reply/', views.reply_topic, name='reply_topic'),
-
+    path('boards/<int:pk>/topics/<int:topic_pk>/posts/<int:post_pk>/edit/',
+        views.PostUpdateView.as_view(), name='edit_post'),
 ]
